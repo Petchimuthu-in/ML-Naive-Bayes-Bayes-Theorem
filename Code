@@ -1,0 +1,18 @@
+import pandas as pd
+
+df = pd.read_csv("rain_umbrella.csv")
+print(df)
+
+p_a = df["Rain"].mean()
+p_b = df["Umbrella"].mean()
+
+p_b_given_a = df[df["Rain"] == 1]["Umbrella"].mean()
+
+print("P(A):", round(p_a, 2))
+print("P(B):", round(p_b, 2))
+print("P(B|A):", round(p_b_given_a, 2))
+
+p_a_given_b = (p_b_given_a * p_a) / p_b
+
+print("P(A|B):", round(p_a_given_b, 2))
+print("Probability of Rain:", round(p_a_given_b * 100, 2), "%")
